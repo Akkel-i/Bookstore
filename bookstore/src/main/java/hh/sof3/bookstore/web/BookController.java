@@ -52,21 +52,12 @@ public class BookController {
         return "redirect:/booklist"; 
     }
 
-/*     @RequestMapping(value ="/deletebook/{bookId}", method = RequestMethod.GET)
-    public String deleteBook(@PathVariable Integer bookId) {
-
-        // poistaa Book Id perusteella
-        //bookRepository.deleteById(bookId);
-        System.out.println(bookId);
-
-        return "redirect:/booklist"; 
-    } */
-
+// vois tarvita lisää työtä mutta tällä hetkellä poistaa kirjan listalta...
     @RequestMapping(value = "/deletebook/{bookId}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("bookId") Integer bookId, Model model) {
         System.out.println("Valittu kirja on id: " + bookId);
 
-        // poistaa Book Id perusteella
+        // poistaa bookId perusteella
         bookRepository.deleteById(bookId);
 
         return "redirect:/booklist";
