@@ -20,10 +20,10 @@ public class BookstoreApplication {
 		return (args) -> {
 
 			// adding some data to Book-DB
-			Book book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, "9781234567890", 20);
-			Book book2 = new Book("A Farewell to Arms", "Ernest Hemingway", 1929, "1232323-21", 50);
-			Book book3 = new Book("Animal Farm", "George Orwell", 1945, "2212343-5", 33);
-			Book book4 = new Book("The Two Towers", "J. R. R. Tolkien", 1954, "936070", 50);
+			Book book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, "9781234567890", 20.00);
+			Book book2 = new Book("A Farewell to Arms", "Ernest Hemingway", 1929, "1232323-21", 50.25);
+			Book book3 = new Book("Animal Farm", "George Orwell", 1945, "2212343-5", 33.33);
+			Book book4 = new Book("The Two Towers", "J. R. R. Tolkien", 1954, "936070", 50.50);
 		
 			bookRepository.save(book1);
 			bookRepository.save(book2);

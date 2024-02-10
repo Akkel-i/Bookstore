@@ -18,7 +18,7 @@ public class Book {
     private String author;
     private Integer publicationYear;
     private String isbn;
-    private Integer price;
+    private Double price;
     
     public Book() {
         super();
@@ -26,11 +26,11 @@ public class Book {
         this.author = null;
         this.publicationYear = 0;
         this.isbn = null;
-        this.price = 0;
+        this.price = 0.00;
     }
 
 
-    public Book(String title, String author, Integer publicationYear, String isbn, Integer price) {
+    public Book(String title, String author, Integer publicationYear, String isbn, Double price) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
@@ -60,7 +60,7 @@ public class Book {
         return isbn;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -87,7 +87,7 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

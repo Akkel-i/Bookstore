@@ -48,17 +48,28 @@ public class BookController {
 
         // tallentaa uuden Book DB
         bookRepository.save(newBook);
-        // after adding new book redirect to endpoint /booklist (GET)
+        // palaa endpoint/booklist (GET)
         return "redirect:/booklist"; 
     }
 
-    @RequestMapping(value ="/delete/{bookId}", method = RequestMethod.GET)
+/*     @RequestMapping(value ="/deletebook/{bookId}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable Integer bookId) {
+
+        // poistaa Book Id perusteella
+        //bookRepository.deleteById(bookId);
+        System.out.println(bookId);
+
+        return "redirect:/booklist"; 
+    } */
+
+    @RequestMapping(value = "/deletebook/{bookId}", method = RequestMethod.GET)
+    public String deleteBook(@PathVariable("bookId") Integer bookId, Model model) {
+        System.out.println("Valittu kirja on id: " + bookId);
 
         // poistaa Book Id perusteella
         bookRepository.deleteById(bookId);
 
-        return "redirect:/booklist"; 
+        return "redirect:/booklist";
     }
 
 }

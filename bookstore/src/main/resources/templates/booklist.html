@@ -48,7 +48,12 @@
                 <span th:text="${book.price}">price</span>
             </td>
             <td>
-                <button type="button"  th:onclick="${deleteBook}">Delete</button>
+                <!-- <button type="button" th:onclick="${book.id}">Delete</button>
+                <button type="button" th:onclick="@{'/deleteBook/' + ${book.id}}">Delete</button> 
+                <button type="button" th:onClick="@{/deletebook/} + ${book.id}" >Delete</button>  -->
+                <!-- Ei tietoa miksi pitää olla kaksi riviä, mutta toimi.... -->
+                <a th:href="@{/deletebook/{id}(id = ${book.id})}">  
+                <button type="button" th:href="@{/deletebook/{id}(id = ${book.id})}">delete</button>
             </td>
         </tr>
     </table>
