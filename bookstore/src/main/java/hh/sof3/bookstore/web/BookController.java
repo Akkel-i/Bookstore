@@ -63,4 +63,13 @@ public class BookController {
         return "redirect:/booklist";
     }
 
+    @RequestMapping(value = "/editbook/{bookId}", method = RequestMethod.GET)
+    public String editBook(@PathVariable("bookId") Integer bookId, Model model) {
+        System.out.println("Valittu kirja on id: " + bookId);
+
+        // muokkaa kirjaa
+
+        return "editbook"; // editbook.html
+    }
+
 }

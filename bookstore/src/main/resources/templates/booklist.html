@@ -4,19 +4,21 @@
 <head>
     <title>book List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
 <body>
     <h1>Here is the selection of books!</h1>
     <p>
-    <table>
+    <table class="table table-striped">
         <tr>
-            <th> id</th>
-            <th> title</th>
-            <th> author</th>
-            <th> publicationYear</th>
-            <th> isbn</th>
-            <th> price</th>
+            <th>Book id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication year</th>
+            <th>ISBN</th>
+            <th>Price</th>
+            <th>Actions</th>
         </tr>
 
         <!-- 		<tr th:each="book : ${books}">
@@ -30,35 +32,39 @@
 	</table> -->
         <tr th:each="book : ${books}">
             <td>
-                <span th:text="${book.id}">id</span>
+                <span th:text="${book.id}">Book id</span>
             </td>
             <td>
-                <span th:text="${book.title}">title</span>
+                <span th:text="${book.title}">Title</span>
             </td>
             <td>
-                <span th:text="${book.author}">author</span>
+                <span th:text="${book.author}">Author</span>
             </td>
             <td>
-                <span th:text="${book.publicationYear}">publicationYear</span>
+                <span th:text="${book.publicationYear}">Publication Year</span>
             </td>
             <td>
-                <span th:text="${book.isbn}">isbn</span>
+                <span th:text="${book.isbn}">ISBN</span>
             </td>
             <td>
-                <span th:text="${book.price}">price</span>
+                <span th:text="${book.price}">Price</span> 
+                <!--ei toimi <span th:text="${#numbers.formatDecimal(book.price, 2)}"></span> -->
             </td>
             <td>
+
                 <!-- <button type="button" th:onclick="${book.id}">Delete</button>
                 <button type="button" th:onclick="@{'/deleteBook/' + ${book.id}}">Delete</button> 
                 <button type="button" th:onClick="@{/deletebook/} + ${book.id}" >Delete</button>  -->
                 <!-- Ei tietoa miksi pitää olla kaksi riviä, mutta toimi.... -->
                 <a th:href="@{/deletebook/{id}(id = ${book.id})}">  
-                <button type="button" th:href="@{/deletebook/{id}(id = ${book.id})}">delete</button>
+                <button type="button" th:href="@{/deletebook/{id}(id = ${book.id})}" class="btn btn-danger">Delete</button>
+                <a th:href="@{/editbook/{id}(id = ${book.id})}">  
+                <button type="button" th:href="@{/editbook/{id}(id = ${book.id})}" class="btn btn-success">Edit</button>
             </td>
         </tr>
     </table>
     </p>
-    <p><a th:href="@{/newbook}">Add a new book</a></p>
+    <p><a th:href="@{/newbook}" class="btn btn-success">Add a new book</a></p>
 
 
 </body>
