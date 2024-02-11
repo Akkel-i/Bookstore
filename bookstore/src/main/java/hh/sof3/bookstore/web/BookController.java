@@ -1,5 +1,7 @@
 package hh.sof3.bookstore.web;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,12 +66,51 @@ public class BookController {
     }
 
     @RequestMapping(value = "/editbook/{bookId}", method = RequestMethod.GET)
-    public String editBook(@PathVariable("bookId") Integer bookId, Model model) {
+    public String editBookGet(@PathVariable("bookId") Integer bookId, Model model) {
+
+        Optional<Book> bookToEdit = bookRepository.findById(bookId);
+
         System.out.println("Valittu kirja on id: " + bookId);
 
+        System.out.println(bookRepository.findById(bookId));
+
         // muokkaa kirjaa
+        model.addAttribute("book", bookToEdit);
 
         return "editbook"; // editbook.html
     }
 
+
+    @RequestMapping(value= "/editbook", method = RequestMethod.POST)
+    public String editBookPost(@PathVariable("bookId") Integer bookId, Model model) {
+
+        // muokkaa kyseistä kirjaa DB
+        //Book book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, "9781234567890", 20.00);
+        //bookRepository.save(book1);
+
+        // hae bookId avulla muokattava kirja
+        Optional<Book> optionalBook = bookRepository.findById(bookId); 
+
+        // jos kirja löytyy, niin ota se muokattavaksi
+        if (optionalBook.isPresent()) {
+            Book existingBook = optionalBook.get();
+        
+            // Update the fields of the existing book
+            existingBook.setTitle("The Great Gatsby");
+            existingBook.setAuthor("F. Scott Fitzgerald");
+            existingBook.setPublicationYear(1925);
+            existingBook.setIsbn("9781234567890");
+            existingBook.setPrice(20.00);
+        
+            // Save the updated book back to the database
+            bookRepository.save(existingBook);
+        } else {
+            // Handle the case where the book with the specified ID does not exist
+            System.out.println("Book with ID 5 does not exist.");
+        }
+
+        // palaa endpoint/booklist (GET)
+        return "redirect:/booklist"; 
+    }
 }
+

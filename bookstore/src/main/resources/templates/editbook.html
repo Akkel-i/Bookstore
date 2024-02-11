@@ -9,19 +9,31 @@
     <h1>
        Edit the selected book here!
     </h1>
-<!--     <form method="POST" action="#" th:action="@{/editbook}" th:object= ${book}>
+    <form method="POST" action="#" th:action="@{/editbook}" th:object= ${book}>
         <p>Title: <input type="text" th:field="${book.Title}" /></p>
         <p>Author: <input type="text" th:field="${book.author}" /></p>
         <p>Publication Year: <input type="text" th:field="${book.publicationYear}" /></p>
         <p>Isbn: <input type="text" th:field="${book.isbn}" /></p>
         <p>Price: <input type="text" th:field="${book.price}" /></p>
         <input type="submit" value="Submit edit" /> 
-    </form> -->
-    <form method="POST" action="#" >
+    </form>
+    
+<!-- testi formi ilman actionia     <form method="POST" action="#" th:action="@{/editbook}" >
         <p>Title: <input type="text"  /></p>
         <p>Author: <input type="text"  /></p>
         <p>Publication Year: <input type="text"  /></p>
         <p>Isbn: <input type="text" /></p>
         <p>Price: <input type="text" /></p>
         <input type="submit" value="Submit edit" /> 
-    </form>
+    </form> -->
+
+    <p id="testi"></p>
+
+
+</body>
+
+<script>
+    console.log("Valittu kirja on id: " + bookId);
+</script>
+
+</html>
