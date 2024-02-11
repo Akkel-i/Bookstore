@@ -26,6 +26,8 @@ public class BookController {
         return "index"; //index.html
     }
     
+
+    
     // http://localhost:8080/booklist
     @RequestMapping(value = "/booklist", method=RequestMethod.GET)
     public String getBooks(Model model) {
@@ -71,7 +73,6 @@ public class BookController {
         Optional<Book> bookToEdit = bookRepository.findById(bookId);
 
         System.out.println("Valittu kirja on id: " + bookId);
-
         System.out.println(bookRepository.findById(bookId));
 
         // muokkaa kirjaa
@@ -82,32 +83,14 @@ public class BookController {
 
 
     @RequestMapping(value= "/editbook", method = RequestMethod.POST)
-    public String editBookPost(@PathVariable("bookId") Integer bookId, Model model) {
+    public String editBookPost(Book editBook, Model model) {
 
         // muokkaa kyseistä kirjaa DB
         //Book book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, "9781234567890", 20.00);
         //bookRepository.save(book1);
 
-        // hae bookId avulla muokattava kirja
-        Optional<Book> optionalBook = bookRepository.findById(bookId); 
-
-        // jos kirja löytyy, niin ota se muokattavaksi
-        if (optionalBook.isPresent()) {
-            Book existingBook = optionalBook.get();
-        
-            // Update the fields of the existing book
-            existingBook.setTitle("The Great Gatsby");
-            existingBook.setAuthor("F. Scott Fitzgerald");
-            existingBook.setPublicationYear(1925);
-            existingBook.setIsbn("9781234567890");
-            existingBook.setPrice(20.00);
-        
-            // Save the updated book back to the database
-            bookRepository.save(existingBook);
-        } else {
-            // Handle the case where the book with the specified ID does not exist
-            System.out.println("Book with ID 5 does not exist.");
-        }
+        // tallenna muokattu kirja
+        bookRepository.save(editBook);
 
         // palaa endpoint/booklist (GET)
         return "redirect:/booklist"; 

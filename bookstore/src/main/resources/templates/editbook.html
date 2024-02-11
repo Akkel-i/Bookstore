@@ -10,6 +10,7 @@
        Edit the selected book here!
     </h1>
     <form method="POST" action="#" th:action="@{/editbook}" th:object= ${book}>
+        <input type="hidden" th:field="*{id}" />
         <p>Title: <input type="text" th:field="${book.Title}" /></p>
         <p>Author: <input type="text" th:field="${book.author}" /></p>
         <p>Publication Year: <input type="text" th:field="${book.publicationYear}" /></p>
