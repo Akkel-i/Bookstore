@@ -10,7 +10,7 @@
        Add a new book here!
     </h1>
     <form method="POST" action="#" th:action="@{/savebook}" th:object= ${book}>
-        <p>Title: <input type="text" th:field="${book.Title}" /></p>
+        <p>Title: <input type="text" th:field="${book.title}" /></p>
         <p>Author: <input type="text" th:field="${book.author}" /></p>
         <p>Publication Year: <input type="text" th:field="${book.publicationYear}" /></p>
         <p>Isbn: <input type="text" th:field="${book.isbn}" /></p>

@@ -48,9 +48,9 @@ public class Category {
         this.name = name;
     }
 
-    // tostring
+/*     // tostring
     @Override
     public String toString() {
         return "Category [categoryId=" + categoryId + ", name=" + name + "]";
-    }
+    } */
 }
