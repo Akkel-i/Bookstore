@@ -5,12 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Book {
 
     // attribuutit
-    @Id
+    @Id // Primary key
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name = "bookId")
     private Integer id;
@@ -19,6 +21,12 @@ public class Book {
     private Integer publicationYear;
     private String isbn;
     private Double price;
+
+    // Book ManyToOne Category
+    @ManyToOne
+    @JoinColumn(name = "categoryid") // ForeignKey
+    private Category category;
+
     
     public Book() {
         super();

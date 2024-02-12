@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 
 import hh.sof3.bookstore.domain.Book;
 import hh.sof3.bookstore.domain.BookRepository;
+import hh.sof3.bookstore.domain.Category;
+import hh.sof3.bookstore.domain.CategoryRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -16,8 +18,20 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository bookRepository) {
+	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
+
+			// luodaan kategoriat
+			Category category1 = new Category("Scifi");
+			categoryRepository.save(category1);
+			Category category2 = new Category("Comic");
+			categoryRepository.save(category2);
+			Category category3 = new Category("Fantasy");
+			categoryRepository.save(category3);
+			Category category4 = new Category("Documentary");
+			categoryRepository.save(category4);
+			Category category5 = new Category("Novel");
+			categoryRepository.save(category5);
 
 			// adding some data to Book-DB
 			Book book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, "9781234567890", 20.00);

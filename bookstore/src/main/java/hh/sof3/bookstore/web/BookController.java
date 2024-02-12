@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import hh.sof3.bookstore.domain.Book;
 import hh.sof3.bookstore.domain.BookRepository;
+import hh.sof3.bookstore.domain.CategoryRepository;
 
 
 @Controller
@@ -19,6 +20,9 @@ public class BookController {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     // http://localhost:8080/index
     @RequestMapping(value="/index", method=RequestMethod.GET)
