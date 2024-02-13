@@ -19,6 +19,7 @@
             <th>ISBN</th>
             <th>Price</th>
             <th>Actions</th>
+            <th>Category</th>
         </tr>
 
         <tr th:each="book : ${books}">
@@ -40,6 +41,10 @@
             <td>
                 <span th:text="${book.price}">Price</span> 
                 <!--ei toimi <span th:text="${#numbers.formatDecimal(book.price, 2)}"></span> -->
+            </td>
+            <td>
+                <span th:if="${book.category != null}" th:text="${book.category.name}">Category</span>
+                <span th:if="${book.category == null}" th:text="None">Category</span>
             </td>
             <td>
 

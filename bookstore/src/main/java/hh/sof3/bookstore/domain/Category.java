@@ -14,12 +14,12 @@ public class Category {
 
     // atribuuti
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long categoryId;
     private String name;
 
     // Relaatio
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private List<Book> books;
 
     public Category() {
@@ -39,6 +39,10 @@ public class Category {
         return name;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
     // setter
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
@@ -48,9 +52,13 @@ public class Category {
         this.name = name;
     }
 
-/*     // tostring
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    // tostring ällä laita listaa koska tulisi ikuinen loop!
     @Override
     public String toString() {
         return "Category [categoryId=" + categoryId + ", name=" + name + "]";
-    } */
+    }
 }

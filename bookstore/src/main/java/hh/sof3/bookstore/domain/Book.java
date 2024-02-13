@@ -14,7 +14,7 @@ public class Book {
     // attribuutit
     @Id // Primary key
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column (name = "bookId")
+    @Column(name = "bookId")
     private Integer id;
     private String title;
     private String author;
@@ -27,23 +27,25 @@ public class Book {
     @JoinColumn(name = "categoryid") // ForeignKey
     private Category category;
 
-    
     public Book() {
+
         super();
         this.title = null;
         this.author = null;
         this.publicationYear = 0;
         this.isbn = null;
         this.price = 0.00;
+        this.category = null;
+
     }
 
-
-    public Book(String title, String author, Integer publicationYear, String isbn, Double price) {
+    public Book(String title, String author, Integer publicationYear, String isbn, Double price, Category category) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
+        this.category = category;
     }
 
     // getters
@@ -72,6 +74,9 @@ public class Book {
         return price;
     }
 
+    public Category getCategory() {
+        return category;
+    }
 
     // setters
 
@@ -99,13 +104,14 @@ public class Book {
         this.price = price;
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     @Override
     public String toString() {
         return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
-                + ", isbn=" + isbn + ", price=" + price + "]";
+                + ", isbn=" + isbn + ", price=" + price + ", category=" + category + "]";
     }
-
-
 
 }
