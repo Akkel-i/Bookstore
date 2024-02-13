@@ -48,6 +48,8 @@ public class BookController {
 
         // luo tyhjän Book-olion lomakkeelle
         model.addAttribute("book", new Book()); 
+        // luo listan kaikista kategorioista
+        model.addAttribute("categories", categoryRepository.findAll());
         return "addbook"; // addbook.html
     }
 
