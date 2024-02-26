@@ -1,5 +1,7 @@
 package hh.sof3.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +26,7 @@ public class Book {
 
     // Book ManyToOne Category
     @ManyToOne
+    @JsonIgnoreProperties ("books") // estää JSON infinite loop
     @JoinColumn(name = "categoryid") // ForeignKey
     private Category category;
 
