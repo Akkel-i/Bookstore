@@ -22,19 +22,19 @@ public class BookRestController {
     @Autowired
     private BookRepository bookRepository;
 
-    	// RESTful service to get all books
+    	// REST service to get all books
     @RequestMapping(value="/books", method = RequestMethod.GET)
     public @ResponseBody List<Book> getBookListRest() {	
         return (List<Book>) bookRepository.findAll();
     }    
 
-	// RESTful service to get book by id
+	// REST service to get book by id
     @RequestMapping(value="/books/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Integer bookId) {	
     	return bookRepository.findById(bookId);
     }      
     
-    // RESTful service to save new book
+    // REST service to save new book
     @RequestMapping(value="/books", method = RequestMethod.POST)
     public @ResponseBody Book saveBookRest(@RequestBody Book newBook) {	
     	return bookRepository.save(newBook);
