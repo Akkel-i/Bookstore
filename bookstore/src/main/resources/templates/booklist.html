@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 
 <head>
     <title>book List</title>
@@ -8,7 +10,14 @@
 </head>
 
 <body>
-    <h1>Here is the selection of books!</h1>
+    <h1>Here is the selection of books for you <span sec:authentication="name"></span>!</h1>
+
+    <div class="col-md-4" style="padding:20px 0; float: right";>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+        </form>
+    </div>
+
     <p>
     <table class="table table-striped">
         <tr>
@@ -18,8 +27,8 @@
             <th>Publication year</th>
             <th>ISBN</th>
             <th>Price</th>
-            <th>Actions</th>
             <th>Category</th>
+            <th sec:authorize="hasRole('ADMIN')">Actions</th>
         </tr>
 
         <tr th:each="book : ${books}">
@@ -39,24 +48,28 @@
                 <span th:text="${book.isbn}">ISBN</span>
             </td>
             <td>
-                <span th:text="${book.price}">Price</span> 
+                <span th:text="${book.price}">Price</span>
                 <!--ei toimi <span th:text="${#numbers.formatDecimal(book.price, 2)}"></span> -->
             </td>
             <td>
                 <span th:if="${book.category != null}" th:text="${book.category.name}">Category</span>
                 <span th:if="${book.category == null}" th:text="None">Category</span>
             </td>
-            <td>
+            
 
                 <!-- <button type="button" th:onclick="${book.id}">Delete</button>
                 <button type="button" th:onclick="@{'/deleteBook/' + ${book.id}}">Delete</button> 
                 <button type="button" th:onClick="@{/deletebook/} + ${book.id}" >Delete</button>  -->
                 <!-- Ei tietoa miksi pitää olla kaksi riviä, mutta toimi.... -->
-                <a th:href="@{/deletebook/{id}(id = ${book.id})}">  
-                <button type="button" th:href="@{/deletebook/{id}(id = ${book.id})}" class="btn btn-danger">Delete</button>
-                <a th:href="@{/editbook/{id}(id = ${book.id})}">  
-                <button type="button" th:href="@{/editbook/{id}(id = ${book.id})}" class="btn btn-success">Edit</button>
+            <td sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/deletebook/{id}(id = ${book.id})}">
+                    <button type="button" th:href="@{/deletebook/{id}(id = ${book.id})}"
+                        class="btn btn-danger">Delete</button>
+                    <a th:href="@{/editbook/{id}(id = ${book.id})}">
+                        <button type="button" th:href="@{/editbook/{id}(id = ${book.id})}"
+                            class="btn btn-success">Edit</button>
             </td>
+            
         </tr>
     </table>
     </p>
