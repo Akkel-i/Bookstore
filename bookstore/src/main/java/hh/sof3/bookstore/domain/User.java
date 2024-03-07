@@ -6,31 +6,35 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity(name="users")
+@Entity(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, updatable = false)
+	private Long id;
 
-    // Username with unique constraint
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+	// unique = true, pitää olla uniikki tunnus
+	@Column(name = "username", nullable = false, unique = true)
+	private String username;
 
-    @Column(name = "password", nullable = false)
-    private String passwordHash;
+	@Column(name = "password", nullable = false)
+	private String passwordHash;
 
-    @Column(name = "role", nullable = false)
-    private String role;
-    
-    public User() {
-    }
+	@Column(name = "email", nullable = false)
+	private String email;
 
-	public User(String username, String passwordHash, String role) {
+	@Column(name = "role", nullable = false)
+	private String role;
+
+	public User() {
+	}
+
+	public User(String username, String passwordHash, String email, String role) {
 		super();
 		this.username = username;
 		this.passwordHash = passwordHash;
+		this.email = email;
 		this.role = role;
 	}
 
@@ -56,6 +60,14 @@ public class User {
 
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getRole() {

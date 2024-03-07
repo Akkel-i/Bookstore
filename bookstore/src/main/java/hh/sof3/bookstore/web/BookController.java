@@ -61,7 +61,7 @@ public class BookController {
 
     // vois tarvita lisää työtä mutta tällä hetkellä poistaa kirjan listalta...
     @RequestMapping(value = "/deletebook/{bookId}", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteBook(@PathVariable("bookId") Integer bookId, Model model) {
         System.out.println("Valittu kirja on id: " + bookId);
 

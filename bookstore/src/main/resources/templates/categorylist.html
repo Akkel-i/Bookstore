@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>Here are all of the categories!</h1>
+    <h1 style="padding: 10px;">Here are all of the categories!</h1>
     <p>
     <table class="table table-striped">
         <tr>
@@ -26,7 +26,7 @@
         </tr>
     </table>
     </p>
-    <p><a th:href="@{/newcategory}" class="btn btn-success">Add a new category</a></p>
+    <p><a th:href="@{/newcategory}" class="btn btn-success" sec:authorize="hasAuthority('ADMIN')">Add a new category</a></p>
     <p><a th:href="@{/booklist}" class="btn btn-success">Go to booklist!</a></p>
 
 
